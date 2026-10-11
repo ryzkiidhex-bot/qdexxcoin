@@ -2009,5 +2009,13 @@
     "timestamp": "2026-10-12 02:32:28",
     "data": "Block mined by ryzkii_brc #250",
     "miner": "ryzkii_brc"
+  },
+  {
+    "index": 251,
+    "hash": "0000115711c2016c84aee9162fa65018bc1b",
+    "prev_hash": "0000efa0bcf7af6bbd537b4c138facb42826",
+    "timestamp": "2026-10-12 02:32:35",
+    "data": "Block mined by ryzkii_brc #251",
+    "miner": "ryzkii_brc"
   }
 ]
