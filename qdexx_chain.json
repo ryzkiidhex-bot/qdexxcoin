@@ -1289,5 +1289,13 @@
     "timestamp": "2026-10-12 02:25:54",
     "data": "Block mined by ryzkii_brc #160",
     "miner": "ryzkii_brc"
+  },
+  {
+    "index": 161,
+    "hash": "0000a0281f7e1f556f1e0b7619194fcb933e",
+    "prev_hash": "0000b2e6ae4921e1b08ee6c9a67cd15b70de",
+    "timestamp": "2026-10-12 02:25:55",
+    "data": "Block mined by ryzkii_brc #161",
+    "miner": "ryzkii_brc"
   }
 ]
