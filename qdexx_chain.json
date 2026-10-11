@@ -449,5 +449,45 @@
     "timestamp": "2026-10-12 02:11:24",
     "data": "Block mined by ryzkii_brc #55",
     "miner": "ryzkii_brc"
+  },
+  {
+    "index": 56,
+    "hash": "000033fdc4b011a2c5d7edfd64aa8b52bceb",
+    "prev_hash": "000081eecf0926586a4e8b0e5fcf9c43e793",
+    "timestamp": "2026-10-12 02:11:34",
+    "data": "Block mined by ryzkii_brc #56",
+    "miner": "ryzkii_brc"
+  },
+  {
+    "index": 57,
+    "hash": "0000b1bf923a1000f3f32ad31e20e403c410",
+    "prev_hash": "000033fdc4b011a2c5d7edfd64aa8b52bceb",
+    "timestamp": "2026-10-12 02:11:42",
+    "data": "Block mined by ryzkii_brc #57",
+    "miner": "ryzkii_brc"
+  },
+  {
+    "index": 58,
+    "hash": "00002d74fc620e31cec1663027e82e19c2de",
+    "prev_hash": "0000b1bf923a1000f3f32ad31e20e403c410",
+    "timestamp": "2026-10-12 02:11:50",
+    "data": "Block mined by ryzkii_brc #58",
+    "miner": "ryzkii_brc"
+  },
+  {
+    "index": 59,
+    "hash": "0000b4eff6df7ef9e7eb63f2f589e821bf13",
+    "prev_hash": "00002d74fc620e31cec1663027e82e19c2de",
+    "timestamp": "2026-10-12 02:11:58",
+    "data": "Block mined by ryzkii_brc #59",
+    "miner": "ryzkii_brc"
+  },
+  {
+    "index": 60,
+    "hash": "00006da21c9690d9d4e9fd73aa0af0603d24",
+    "prev_hash": "0000b4eff6df7ef9e7eb63f2f589e821bf13",
+    "timestamp": "2026-10-12 02:12:06",
+    "data": "Block mined by ryzkii_brc #60",
+    "miner": "ryzkii_brc"
   }
 ]
