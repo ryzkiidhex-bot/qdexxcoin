@@ -1,0 +1,13 @@
+[
+  {
+    "index": 0,
+    "timestamp": 1791733294.1293228,
+    "data": {
+      "type": "GENESIS",
+      "msg": "QDEXX Coin by @qdexxx - Rizky ryzkii_brc - Jakarta"
+    },
+    "prev_hash": "0",
+    "nonce": 17886,
+    "hash": "0000c38b0c61c532e80aace30084957d03328fce68b08e12b59c9ad1165ebb49"
+  }
+]
