@@ -1,73 +1,130 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<title>QDEXX COIN - SYNC #4748 - Swapped 2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QDEXX COIN | Blockchain Explorer by @qdexxx</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-body{margin:0;background:#050A06;color:#fff;font-family:system-ui;text-align:center;padding-bottom:90px}
-.logo{margin:28px auto 8px;width:180px;height:180px;border-radius:24px;background:#000;box-shadow:0 0 40px rgba(0,255,136,.35);display:flex;align-items:center;justify-content:center;font-size:60px}
-.card{margin:14px;background:linear-gradient(180deg,#0e2215,#0a1a10);border:1px solid #00ff8850;border-radius:22px;padding:18px}
-.bal{font-size:44px;font-weight:900;line-height:1}
-.green{color:#00ff88}.gray{color:#8a9a8f;font-size:12px;letter-spacing:2px}
-.sync{color:#5a6e5f;font-size:10px;margin-top:8px;word-break:break-all}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px}
-.btn{padding:16px 8px;border-radius:16px;border:none;font-weight:800;font-size:13px}
-.btn-green{background:#00ff88;color:#000}.btn-dark{background:#122317;color:#00ff88;border:1px solid #00ff8840}
-.section{display:none;margin:14px;background:#0c1e13;border-radius:18px;padding:16px;text-align:left;border:1px solid #00ff8830}
-.section.active{display:block}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#080E09;border-top:1px solid #1a2e1f;display:flex;justify-content:space-around;padding:8px 0 18px}
-.nav div{font-size:11px;color:#6a7e6f;cursor:pointer}.nav div.active{color:#00ff88}
+body{font-family:'Inter',sans-serif;background:#070a08;color:#e5ffe5}
+.mono{font-family:'JetBrains Mono',monospace}
+.glow{box-shadow:0 0 30px rgba(0,255,136,.25)}
+.pulse-dot{animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.grid-bg{background-image:linear-gradient(rgba(0,255,136,.07) 1px, transparent 1px),linear-gradient(90deg, rgba(0,255,136,.07) 1px, transparent 1px);background-size:40px 40px}
+.scan{animation:scan 3s linear infinite}
+@keyframes scan{0%{transform:translateY(-100%)}100%{transform:translateY(200%)}}
 </style>
 </head>
-<body>
-<div class="logo">💎</div>
-<h1 style="color:#00ff88;margin:0">QDEXX COIN</h1>
-<div class="gray">FUTURE MINING • LIVE BLOCKCHAIN</div>
+<body class="min-h-screen grid-bg">
+<!-- HEADER -->
+<header class="sticky top-0 z-50 backdrop-blur-xl bg-black/70 border-b border-[#00ff88]/20">
+<div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-[#00ff88] text-black font-black text-xl grid place-items-center glow">Q</div>
+<div>
+<div class="font-black text-xl tracking-tighter">QDEXX<span class="text-[#00ff88]">COIN</span></div>
+<div class="mono text-[10px] text-white/50 -mt-1">by @qdexxx • ryzkii_brc</div>
+</div>
+</div>
+<div class="flex items-center gap-4 mono text-xs">
+<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#00ff88] pulse-dot"></span> MAINNET LIVE</span>
+<span class="hidden md:inline text-white/60" id="live-time">00:13 WIB</span>
+</div>
+</div>
+</header>
 
-<div class="card">
-<div class="gray">YOUR BALANCE (SYNCED)</div>
-<div class="bal">4.6910 QDX</div>
-<div class="green" style="font-weight:800;margin-top:4px">0.0321 USDT • Swapped 2 coin</div>
-<div class="sync" id="sync">SYNC #4748 • 4.6910 QDX + 0.0321 USDT • QDXA1B2C3D4E5F6G7H8 • Swapped 2 coin</div>
-<div style="margin-top:8px;color:#00ff88;font-size:13px;font-weight:700">1 Telegram = 1 Wallet = 1 QDX</div>
+<!-- STATS -->
+<div class="max-w-7xl mx-auto px-4 pt-6 grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-white/[0.04] border border-white/10 rounded-2xl p-4 backdrop-blur"><div class="mono text-[10px] text-white/40">BLOCK HEIGHT</div><div class="text-2xl font-black mono" id="blockHeight">2</div><div class="text-[10px] text-[#00ff88]">+1 every ~8s</div></div>
+<div class="bg-white/[0.04] border border-white/10 rounded-2xl p-4"><div class="mono text-[10px] text-white/40">HASH RATE</div><div class="text-2xl font-black mono" id="hashRate">4.82 TH/s</div><div class="text-[10px] text-[#00ff88]">▲ mining</div></div>
+<div class="bg-white/[0.04] border border-white/10 rounded-2xl p-4"><div class="mono text-[10px] text-white/40">TOTAL SUPPLY</div><div class="text-2xl font-black mono">21M QDX</div><div class="text-[10px] text-white/40">fixed</div></div>
+<div class="bg-white/[0.04] border border-white/10 rounded-2xl p-4"><div class="mono text-[10px] text-white/40">PRICE</div><div class="text-2xl font-black mono">$0.0088</div><div class="text-[10px] text-[#00ff88]">+2.41% 24h</div></div>
 </div>
 
-<div class="grid">
-<button class="btn btn-green" onclick="show('mining')">⛏️ START MINING</button>
-<button class="btn btn-dark" onclick="show('explorer')">🔍 EXPLORER PRO</button>
-<button class="btn btn-dark" onclick="show('wallet')">💼 WALLET</button>
-<button class="btn btn-dark" onclick="show('swap')">🔄 SWAP</button>
+<div class="max-w-7xl mx-auto px-4 py-6 grid lg:grid-cols-3 gap-6">
+<!-- BLOCKS -->
+<div class="lg:col-span-2 bg-black/60 border border-[#00ff88]/20 rounded-[24px] overflow-hidden">
+<div class="p-5 flex items-center justify-between border-b border-white/10">
+<h2 class="font-black">LATEST BLOCKS</h2>
+<span class="mono text-[10px] px-2 py-1 rounded-full bg-[#00ff88]/15 text-[#00ff88]">LIVE</span>
+</div>
+<div class="overflow-auto max-h-[420px]" id="blocksList"></div>
+<div class="p-3 border-t border-white/10 mono text-[10px] text-white/30 text-center">Chain file: qdexx_chain.json • Auto-sync</div>
 </div>
 
-<div id="s-mining" class="section"><h3>⛏️ Mining</h3><p>Rate: 0.0021 QDX / hour</p><p>Status: <span style="color:#00ff88">Active • SYNC #4748</span></p><button class="btn btn-green" style="width:100%" onclick="alert('Mining 4.6910 QDX running!')">START MINING NOW</button></div>
-<div id="s-explorer" class="section"><h3>🔍 Explorer Pro</h3><p style="font-size:12px;color:#9ab">Last TX:</p><p style="font-size:12px">- Swapped 2 coin → +0.0321 USDT<br>- SYNC #4748 - QDXA1B2C3D4E5F6G7H8</p></div>
-<div id="s-wallet" class="section"><h3>💼 Wallet</h3><p style="word-break:break-all;background:#000;padding:10px;border-radius:10px;font-size:12px" id="waddr">QDXA1B2C3D4E5F6G7H8</p><p>Balance: 4.6910 QDX + 0.0321 USDT</p></div>
-<div id="s-swap" class="section"><h3>🔄 Swap</h3><p>Swapped 2 coin = 0.0321 USDT</p><p>Total: 4.6910 QDX + 0.0321 USDT</p></div>
-
-<div class="nav">
-<div id="n-home" class="active" onclick="show('home')">🏠<br>Home</div>
-<div id="n-mining" onclick="show('mining')">⛏️<br>Mining</div>
-<div id="n-explorer" onclick="show('explorer')">🔍<br>Explorer</div>
-<div id="n-wallet" onclick="show('wallet')">💳<br>Wallet</div>
+<!-- WALLET + MINING -->
+<div class="space-y-6">
+<div class="bg-gradient-to-br from-[#00ff88]/15 to-black border border-[#00ff88]/30 rounded-[24px] p-5">
+<h3 class="font-bold mb-3">Wallet Checker</h3>
+<input id="walletInput" placeholder="QDX address / ryzkii_brc" class="w-full bg-black/70 border border-white/10 rounded-xl px-4 py-3 mono text-sm outline-none focus:border-[#00ff88]">
+<button onclick="checkWallet()" class="w-full mt-3 bg-[#00ff88] text-black font-black py-3 rounded-xl">CHECK BALANCE</button>
+<div id="walletResult" class="mt-4 hidden bg-black/60 rounded-xl p-4 mono text-xs"></div>
+<canvas id="mineCanvas" width="300" height="80" class="w-full mt-4 rounded-xl bg-black/40"></canvas>
 </div>
+
+<div class="bg-white/[0.04] border border-white/10 rounded-[24px] p-5">
+<h3 class="font-bold mb-2">Genesis</h3>
+<p class="mono text-xs text-white/60">QDEXX COIN by @qdexxx<br>First block mined by ryzkii_brc<br>Termux • GitHub Pages • Mainnet</p>
+<a href="qdexx_chain.json" class="inline-block mt-3 mono text-xs text-[#00ff88] underline">View qdexx_chain.json</a>
+<a href="qdexx_wallets.json" class="inline-block ml-3 mono text-xs text-[#00ff88] underline">View wallets</a>
+</div>
+</div>
+</div>
+
+<div class="border-t border-white/10 py-4 text-center mono text-[10px] text-white/30">© 2026 QDEXX COIN • Built by @qdexxx • ryzkiidhex-bot.github.io/qdexxcoin</div>
 
 <script>
-const params=new URLSearchParams(location.search);
-const wallet=params.get('wallet')||'QDXA1B2C3D4E5F6G7H8';
-document.getElementById('waddr').innerText=wallet;
-document.getElementById('sync').innerText='SYNC #4748 • 4.6910 QDX + 0.0321 USDT • '+wallet+' • Swapped 2 coin • '+new Date().toLocaleTimeString();
-function show(id){
- document.querySelectorAll('.section').forEach(e=>e.classList.remove('active'));
- document.querySelectorAll('.nav div').forEach(e=>e.classList.remove('active'));
- if(id==='home'){location.hash=''; return}
- const sec=document.getElementById('s-'+id); if(sec) sec.classList.add('active');
- const nav=document.getElementById('n-'+id); if(nav) nav.classList.add('active');
- location.hash=id;
+let blocks=[
+{index:0,hash:"0000a1b2c3d4e5f6_genesis_qdexx_by_qdexxx",prev:"0",time:"2026-05-13 00:00:00",miner:"QDXGENESIS",txs:1},
+{index:1,hash:"0000f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3",prev:"0000a1b2",time:"2026-05-13 00:10:00",miner:"ryzkii_brc",txs:1}
+];
+async function loadChain(){
+ try{
+  const r=await fetch('qdexx_chain.json?t='+Date.now());
+  if(r.ok){ const j=await r.json(); if(Array.isArray(j)&&j.length>0){ blocks=j.map((b,i)=>({index:b.index??i,hash:b.hash||'0000'+Math.random().toString(16).slice(2,10),prev:b.prev_hash||'',time:new Date().toLocaleString(),miner:b.data?.to||'miner',txs:1})); } }
+ }catch(e){}
+ render();
+ document.getElementById('blockHeight').innerText=blocks.length;
 }
-if(location.hash){show(location.hash.replace('#',''))}
-window.addEventListener('hashchange',()=>{const h=location.hash.replace('#',''); if(h) show(h)});
+function render(){
+ const el=document.getElementById('blocksList');
+ el.innerHTML=blocks.slice().reverse().map(b=>`
+ <div class="flex items-center justify-between px-5 py-3 border-b border-white/5 hover:bg-white/[0.03]">
+ <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-white/5 grid place-items-center mono text-xs">#${b.index}</div><div><div class="mono text-xs text-[#00ff88]">${b.hash.slice(0,18)}...</div><div class="mono text-[10px] text-white/40">${b.time} • ${b.miner}</div></div></div>
+ <div class="mono text-xs">${b.txs} TX</div>
+ </div>`).join('');
+}
+function addBlock(){
+ const last=blocks[blocks.length-1];
+ const nb={index:last.index+1,hash:'0000'+Math.random().toString(36).slice(2,10)+Math.random().toString(16).slice(2,8),prev:last.hash.slice(0,8),time:new Date().toLocaleTimeString(),miner:['ryzkii_brc','QDXNODE','@qdexxx'][Math.floor(Math.random()*3)],txs:Math.floor(Math.random()*3)+1};
+ blocks.push(nb);
+ if(blocks.length>20) blocks.shift();
+ render();
+ document.getElementById('blockHeight').innerText=blocks.length;
+ document.getElementById('hashRate').innerText=(4.5+Math.random()).toFixed(2)+' TH/s';
+}
+let wallets={"ryzkii_brc":{"nama":"Rizky","saldo":50,"address":"QDX8F3A2B9C1D4E5F6"}};
+async function loadWallets(){
+ try{ const r=await fetch('qdexx_wallets.json?t='+Date.now()); if(r.ok){ const j=await r.json(); wallets=j; } }catch(e){}
+}
+function checkWallet(){
+ const v=document.getElementById('walletInput').value.trim().toLowerCase();
+ const res=document.getElementById('walletResult');
+ let found=null;
+ for(const k in wallets){ if(k.toLowerCase().includes(v)|| (wallets[k].address||'').toLowerCase().includes(v)) found=wallets[k]; }
+ if(!found && v==='') found=wallets['ryzkii_brc'];
+ if(found){ res.classList.remove('hidden'); res.innerHTML=`<div>Address: ${found.address||'QDX...'}</div><div class="text-[#00ff88] text-lg mt-1">${found.saldo||found.balance||0} QDEXX</div><div class="text-white/40">Owner: ${found.nama||'Rizky'}</div>`; }
+ else{ res.classList.remove('hidden'); res.innerHTML=`<span class="text-red-400">Wallet not found in qdexx_wallets.json</span>`; }
+}
+// mining canvas
+const c=document.getElementById('mineCanvas'), ctx=c.getContext('2d');
+let dots=Array.from({length:25},()=>({x:Math.random()*300,y:Math.random()*80,v:Math.random()*2+0.5}));
+function anim(){ ctx.clearRect(0,0,300,80); ctx.fillStyle='#00ff88'; dots.forEach(d=>{ d.x+=d.v; if(d.x>300)d.x=0; ctx.fillRect(d.x,d.y,2,2); }); requestAnimationFrame(anim); } anim();
+setInterval(addBlock,8000);
+loadChain(); loadWallets();
+setInterval(()=>{ document.getElementById('live-time').innerText=new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})+' WIB'; },1000);
 </script>
 </body>
 </html>
