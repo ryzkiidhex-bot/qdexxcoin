@@ -192,17 +192,56 @@ async function mineLoop(){
   }
 }
 
+function toggleMine(){// ===== FIX 24 JAM OFFLINE MINING =====
+function claimOffline(){
+  let last = parseInt(localStorage.getItem('qdexx_last_time') || Date.now());
+  let now = Date.now();
+  if(mining){
+    let jam = (now - last)/1000/3600;
+    let rate = 0.05; // 1.2 QDX per 24 jam
+    if(jam > 0){
+      // tambah balance
+      if(typeof balance !== 'undefined'){
+        balance += jam * rate;
+        localStorage.setItem('qdexx_balance', balance);
+        try{ document.getElementById('balance').innerText = balance.toFixed(4)+' QDX'; }catch(e){}
+      }
+    }
+  }
+  localStorage.setItem('qdexx_last_time', now);
+}
+
 function toggleMine(){
   if(!wallet) return alert('Isi wallet dulu');
-  mining=!mining;
-  if(mining){
+  if(!mining){
+    mining=true;
+    localStorage.setItem('qdexx_mining','true');
+    localStorage.setItem('qdexx_last_time', Date.now());
     document.getElementById('mineBtn').innerText='⏸️ STOP MINING';
     mineLoop();
-    log('Mining dimulai...');
-  }else{
+    log('Mining dimulai... (akan tetap jalan walau close browser 24 jam)');
+  } else {
+    claimOffline();
+    mining=false;
+    localStorage.setItem('qdexx_mining','false');
     document.getElementById('mineBtn').innerText='⛏️ LANJUT MINING';
-    log('Mining pause. Balance disimpan.');
+    log('Mining pause. Balance disimpan: '+balance.toFixed(4));
   }
+}
+
+// Auto lanjutin kalau sebelumnya lagi mining (biar close 24 jam tetep kehitung)
+if(localStorage.getItem('qdexx_mining') === 'true'){
+  mining = true;
+  claimOffline();
+  setTimeout(()=>{ 
+    try{ 
+      document.getElementById('mineBtn').innerText='⏸️ STOP MINING'; 
+      mineLoop(); 
+      log('Auto resume: +'+(balance).toFixed(4)+' QDX (offline mining aktif)'); 
+    }catch(e){} 
+  },500);
+}
+setInterval(claimOffline, 10000);
 }
 
 // Auto check kalau sudah ada wallet
