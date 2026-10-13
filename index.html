@@ -1,25 +1,88 @@
-<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>QDEXX COIN - V5 UPGRADE - SYNC #5200</title><link rel="icon" href="logo.png?v=5200"><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:Inter,sans-serif;padding-bottom:90px} .hero{background:radial-gradient(ellipse at top,#0a1a12 0%,#000 70%);min-height:100vh;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center} .logo-ring{width:180px;height:180px;border-radius:50%;background:#000;box-shadow:0 0 80px rgba(34,255,120,.4);animation:float 3s ease-in-out infinite;overflow:hidden;border:2px solid rgba(34,255,120,.3)} .logo-ring img{width:100%;height:100%;object-fit:cover} @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}} .title{font-size:48px;font-weight:900;margin-top:20px;letter-spacing:3px;color:#2aff80} .bal-card{background:linear-gradient(135deg,#0a0a0a,#0f1a12);border:1px solid rgba(42,255,128,.25);border-radius:24px;padding:22px;width:100%;max-width:520px;margin-top:20px} .bal{font-size:42px;font-weight:900} .usdt{color:#2aff80;font-weight:800;font-size:18px} .btns{width:100%;max-width:520px;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px} .btn{padding:16px;border-radius:16px;border:none;font-weight:900;cursor:pointer} .btn-main{background:linear-gradient(135deg,#00c853,#2aff80);color:#000;box-shadow:0 0 20px rgba(42,255,128,.4)} .btn-sec{background:#111;border:1px solid rgba(42,255,128,.2);color:#2aff80} .sync{color:#5a7a65;font-size:10px;margin-top:8px;word-break:break-all} .nav{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.9);border-top:1px solid rgba(42,255,128,.15);display:flex;justify-content:space-around;padding:10px 0} .nav button{background:none;border:none;color:#5a7a65;font-size:11px;cursor:pointer} .nav .active{color:#2aff80} .badge-live{background:#0f2a1a;color:#22c55e;border:1px solid #1a4a2a;border-radius:999px;padding:6px 12px;font-size:11px;font-weight:800;display:flex;gap:6px;align-items:center;justify-content:center;margin:10px auto} .live-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block;animation:blink 1s infinite} @keyframes blink{50%{opacity:.2}} .section{display:none;width:100%;max-width:520px;margin-top:16px;background:#0a0a0a;border:1px solid rgba(42,255,128,.15);border-radius:20px;padding:16px;text-align:left} .section.active{display:block} .table{width:100%;border-collapse:collapse;font-size:13px} .table td{padding:12px 8px;border-top:1px solid #1a1a24} .hash{color:#7c5cff;font-family:monospace;font-size:12px;font-weight:700} .reward{color:#22c55e;font-weight:800;text-align:right}</style></head><body>
-<div class="hero">
-<div class="logo-ring"><img src="logo.png?v=5200" alt="QDEXX"></div>
-<div class="title">QDEXX COIN</div>
-<div style="color:#6b8a75;margin-top:6px;font-size:12px;letter-spacing:2px">FUTURE MINING • LIVE BLOCKCHAIN • V5 UPGRADE</div>
-<div class="badge-live"><span class="live-dot"></span><span id="liveHdr">LIVE AUTO • #5200 • 4.6910 QDX</span></div>
-<div class="bal-card"><div style="font-size:10px;color:#5a7a65;letter-spacing:2px">YOUR BALANCE (SYNCED)</div><div class="bal"><span id="bal">4.6910</span> QDX</div><div class="usdt"><span id="usdt">0.0321</span> USDT • Swapped 2 coin • V5</div><div class="sync" id="sync">SYNC #5200 • 4.6910 QDX + 0.0321 USDT • QDXA1B2C3D4E5F6G7H8 • V5 UPGRADE</div><div style="margin-top:8px;color:#00ff88;font-size:11px;font-weight:700" id="wdisplay">QDXA1B2C3D4E5F6G7H8 • 1 Telegram = 1 Wallet = 1 QDX</div></div>
-<div class="btns"><button class="btn btn-main" onclick="show('mining')">⛏️ START MINING</button><button class="btn btn-sec" onclick="show('explorer')">🔍 EXPLORER PRO</button></div>
-<div class="btns" style="margin-top:10px"><button class="btn btn-sec" onclick="show('wallet')">💳 WALLET</button><button class="btn btn-sec" onclick="show('swap')">📈 SWAP V5</button></div>
-
-<div id="s-mining" class="section"><h3>⛏️ Mining V5 #5200</h3><p>Rate: 0.0021 QDX / hour • Auto</p><p>Status: <span style="color:#22c55e">Active • SYNC #5200 UPGRADED</span></p><div style="background:#000;padding:10px;border-radius:10px;margin:10px 0;font-family:monospace;font-size:12px" id="mineLog">⛏️ Mining block #5200...<br>✅ Block #5200 mined +0.001 QDX</div><button class="btn btn-main" style="width:100%" onclick="mineNow()">START MINING NOW</button></div>
-
-<div id="s-explorer" class="section"><div style="display:flex;justify-content:space-between;margin-bottom:12px"><h3>📦 Latest Blocks <span style="color:#22c55e;font-size:12px">• AUTO SYNC V5</span></h3><span class="badge-live" id="liveBadge">LIVE • #5200</span></div><table class="table"><tbody id="blockBody"></tbody></table></div>
-
-<div id="s-wallet" class="section"><h3>💼 Wallet V5</h3><p style="word-break:break-all;background:#000;padding:10px;border-radius:10px;font-size:12px" id="waddr">QDXA1B2C3D4E5F6G7H8</p><p>Balance: <span id="wbal">4.6910 QDX + 0.0321 USDT</span></p><button class="btn btn-sec" style="width:100%;margin-top:8px" onclick="navigator.clipboard.writeText(document.getElementById('waddr').innerText);alert('Wallet copied!')">Copy Wallet</button><button class="btn btn-main" style="width:100%;margin-top:8px" onclick="show('explorer')">View on Explorer</button></div>
-
-<div id="s-swap" class="section"><h3>🔄 Swap V5 UPGRADE</h3><p>Swapped 2 coin = 0.0321 USDT</p><p>Total: 4.6910 QDX + 0.0321 USDT</p><div style="background:#0f2a1a;border:1px solid #1a4a2a;border-radius:12px;padding:12px;margin-top:10px"><b style="color:#22c55e">V5 Rate:</b> 1 QDX = $0.01605 USDT<br><b>Swapped:</b> 2 coin<br><b>Received:</b> 0.0321 USDT</div><p style="font-size:11px;color:#6b7280;margin-top:8px">SYNC #5200 • UPGRADED • QDXA1B2C3D4E5F6G7H8</p></div>
-
-</div>
-<div class="nav"><button id="n-home" class="active" onclick="show('home')">🏠<br>Home</button><button id="n-mining" onclick="show('mining')">⛏️<br>Mining</button><button id="n-explorer" onclick="show('explorer')">🔍<br>Explorer</button><button id="n-wallet" onclick="show('wallet')">💳<br>Wallet</button></div>
+<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>QDEXX COIN - V5 24H MINING - SYNC #5200</title><link rel="icon" href="logo.png?v=5200"><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:Inter,sans-serif;padding-bottom:90px}.hero{background:radial-gradient(ellipse at top,#0a1a12 0%,#000 70%);min-height:100vh;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.logo-ring{width:180px;height:180px;border-radius:50%;background:#000;box-shadow:0 0 80px rgba(34,255,120,.4);animation:float 3s ease-in-out infinite;overflow:hidden;border:2px solid rgba(34,255,120,.3)}.logo-ring img{width:100%;height:100%;object-fit:cover}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}.title{font-size:48px;font-weight:900;margin-top:20px;letter-spacing:3px;color:#2aff80}.bal-card{background:linear-gradient(135deg,#0a0a0a,#0f1a12);border:1px solid rgba(42,255,128,.25);border-radius:24px;padding:22px;width:100%;max-width:520px;margin-top:20px}.bal{font-size:42px;font-weight:900}.usdt{color:#2aff80;font-weight:800;font-size:18px}.btns{width:100%;max-width:520px;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.btn{padding:16px;border-radius:16px;border:none;font-weight:900;cursor:pointer}.btn-main{background:linear-gradient(135deg,#00c853,#2aff80);color:#000;box-shadow:0 0 20px rgba(42,255,128,.4)}.btn-main:disabled{opacity:.5}.btn-sec{background:#111;border:1px solid rgba(42,255,128,.2);color:#2aff80}.sync{color:#5a7a65;font-size:10px;margin-top:8px;word-break:break-all}.nav{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.9);border-top:1px solid rgba(42,255,128,.15);display:flex;justify-content:space-around;padding:10px 0}.nav button{background:none;border:none;color:#5a7a65;font-size:11px;cursor:pointer}.nav .active{color:#2aff80}.badge-live{background:#0f2a1a;color:#22c55e;border:1px solid #1a4a2a;border-radius:999px;padding:6px 12px;font-size:11px;font-weight:800;display:flex;gap:6px;align-items:center;justify-content:center;margin:10px auto}.live-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block;animation:blink 1s infinite}@keyframes blink{50%{opacity:.2}}.section{display:none;width:100%;max-width:520px;margin-top:16px;background:#0a0a0a;border:1px solid rgba(42,255,128,.15);border-radius:20px;padding:16px;text-align:left}.section.active{display:block}.table{width:100%;border-collapse:collapse;font-size:13px}.table td{padding:12px 8px;border-top:1px solid #1a1a24}.hash{color:#7c5cff;font-family:monospace;font-size:12px;font-weight:700}.reward{color:#22c55e;font-weight:800;text-align:right}.countdown{font-size:32px;font-weight:900;color:#2aff80;letter-spacing:2px;margin:10px 0;text-align:center}</style></head><body>
+<div class="hero"><div class="logo-ring"><img src="logo.png?v=5200" alt="QDEXX"></div><div class="title">QDEXX COIN</div><div style="color:#6b8a75;margin-top:6px;font-size:12px;letter-spacing:2px">FUTURE MINING • LIVE BLOCKCHAIN • V5 24H</div><div class="badge-live"><span class="live-dot"></span><span id="liveHdr">LIVE AUTO • #5200 • 4.6910 QDX</span></div><div class="bal-card"><div style="font-size:10px;color:#5a7a65;letter-spacing:2px">YOUR BALANCE (SYNCED)</div><div class="bal"><span id="bal">4.6910</span> QDX</div><div class="usdt"><span id="usdt">0.0321</span> USDT • Swapped 2 coin • V5</div><div class="sync" id="sync">SYNC #5200 • 4.6910 QDX + 0.0321 USDT • QDXA1B2C3D4E5F6G7H8 • V5 24H</div><div style="margin-top:8px;color:#00ff88;font-size:11px;font-weight:700" id="wdisplay">QDXA1B2C3D4E5F6G7H8 • 1 Telegram = 1 Wallet = 1 QDX</div></div><div class="btns"><button class="btn btn-main" id="mineBtn" onclick="startMining24h()">⛏️ START MINING 24JAM</button><button class="btn btn-sec" onclick="show('explorer')">🔍 EXPLORER</button></div><div class="btns" style="margin-top:10px"><button class="btn btn-sec" onclick="show('wallet')">💳 WALLET</button><button class="btn btn-sec" onclick="show('swap')">📈 SWAP V5</button></div><div id="s-mining" class="section"><h3>⛏️ Mining 24 JAM - 1 Klik Jalan Terus</h3><p style="color:#6b7280;font-size:12px">Kayak dulu, klik sekali jalan 24 jam nonstop</p><div class="countdown" id="countdown">00:00:00</div><p style="text-align:center">Status: <span style="color:#22c55e" id="mineStatus">Idle - Klik START 24JAM</span></p><div style="background:#000;padding:10px;border-radius:10px;margin:10px 0;font-family:monospace;font-size:12px" id="mineLog">⛏️ Ready - 1 klik = 24 jam<br>Rate: 0.0021 QDX / hour auto<br>💰 4.6910 QDX</div><button class="btn btn-main" style="width:100%" id="mineBtn2" onclick="startMining24h()">START 24 JAM MINING</button></div><div id="s-explorer" class="section"><div style="display:flex;justify-content:space-between;margin-bottom:12px"><h3>📦 Latest Blocks <span style="color:#22c55e;font-size:12px">• AUTO SYNC V5</span></h3><span class="badge-live" id="liveBadge">LIVE • #5200</span></div><table class="table"><tbody id="blockBody"></tbody></table></div><div id="s-wallet" class="section"><h3>💼 Wallet V5</h3><p style="word-break:break-all;background:#000;padding:10px;border-radius:10px;font-size:12px" id="waddr">QDXA1B2C3D4E5F6G7H8</p><p>Balance: <span id="wbal">4.6910 QDX + 0.0321 USDT</span></p><button class="btn btn-sec" style="width:100%;margin-top:8px" onclick="navigator.clipboard.writeText(document.getElementById('waddr').innerText);alert('Copied')">Copy Wallet</button></div><div id="s-swap" class="section"><h3>🔄 Swap V5</h3><p>Swapped 2 coin = 0.0321 USDT</p><p>Total: 4.6910 QDX + 0.0321 USDT</p><div style="background:#0f2a1a;border:1px solid #1a4a2a;border-radius:12px;padding:12px;margin-top:10px"><b style="color:#22c55e">V5 Rate:</b> 1 QDX = $0.01605<br><b>Swapped:</b> 2 coin<br><b>Received:</b> 0.0321 USDT</div></div></div><div class="nav"><button id="n-home" class="active" onclick="show('home')">🏠<br>Home</button><button id="n-mining" onclick="show('mining')">⛏️<br>Mining</button><button id="n-explorer" onclick="show('explorer')">🔍<br>Explorer</button><button id="n-wallet" onclick="show('wallet')">💳<br>Wallet</button></div>
 <script>
-let blocks=parseInt(localStorage.getItem('qdexx_blocks')||'5200');let balance=parseFloat(localStorage.getItem('qdexx_bal')||'4.6910');let usdt=parseFloat(localStorage.getItem('qdexx_usdt')||'0.0321');const params=new URLSearchParams(location.search);let wallet=params.get('wallet')||localStorage.getItem('qdexx_wallet')||'QDXA1B2C3D4E5F6G7H8';document.getElementById('waddr').innerText=wallet;document.getElementById('wdisplay').innerText=wallet+' • 1 Telegram = 1 Wallet = 1 QDX';
-function updateSync(){document.getElementById('sync').innerText=`SYNC #${blocks} • ${balance.toFixed(4)} QDX + ${usdt.toFixed(4)} USDT • ${wallet} • V5 UPGRADE • ${new Date().toLocaleTimeString()}`;document.getElementById('bal').innerText=balance.toFixed(4);document.getElementById('usdt').innerText=usdt.toFixed(4);document.getElementById('wbal').innerText=balance.toFixed(4)+' QDX + '+usdt.toFixed(4)+' USDT';document.getElementById('liveHdr').innerText=`LIVE AUTO • #${blocks} • ${balance.toFixed(4)} QDX`;document.getElementById('liveBadge').innerText=`LIVE • #${blocks}`;}
-function shortW(w){return w.slice(0,6)+'...'+w.slice(-4);}function randHash(){const c='abcdef0123456789';let h='0x';for(let i=0;i<12;i++)h+=c[Math.floor(Math.random()*16)];return h;}let blockData=[];function addBlock(h,isNew=false){const miner=(h%3===0)?wallet:'QDX'+Math.random().toString(36).slice(2,6).toUpperCase();blockData.unshift({height:h,hash:randHash()+Math.random().toString(16).slice(2,6)+'...'+Math.random().toString(16).slice(2,4),miner:miner,reward:'+0.001 QDX',ago:isNew?'0 secs ago':Math.floor(Math.random()*60)+' secs ago',txs:Math.floor(Math.random()*4)+1});if(blockData.length>12)blockData.pop();}function init(){for(let i=11;i>=0;i--)addBlock(blocks-i);render();updateSync();}function render(){document.getElementById('blockBody').innerHTML=blockData.map(b=>`<tr onclick="alert('Block #${b.height} • ${balance.toFixed(4)} QDX')" style="cursor:pointer"><td><b>Block #${b.height}</b><br><span style="font-size:11px;color:#6b7280">${b.ago} • ${b.txs} txs</span></td><td><span class="hash">${b.hash}</span><br><span style="font-size:12px">${shortW(b.miner)} ${b.miner===wallet?'<span style=background:#0f2a1a;color:#22c55e;border:1px solid #1a4a2a;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:800>YOU</span>':''}</span></td><td class="reward">+0.001<br>QDX</td></tr>`).join('');}function mineNow(){blocks++;balance+=0.001;localStorage.setItem('qdexx_blocks',blocks);localStorage.setItem('qdexx_bal',balance.toFixed(4));localStorage.setItem('qdexx_wallet',wallet);addBlock(blocks,true);render();updateSync();document.getElementById('mineLog').innerHTML=`⛏️ Mining block #${blocks}...<br>✅ Block #${blocks} mined +0.001 QDX<br>💰 Balance: ${balance.toFixed(4)} QDX`;}function show(id){document.querySelectorAll('.section').forEach(e=>e.classList.remove('active'));document.querySelectorAll('.nav button').forEach(e=>e.classList.remove('active'));if(id==='home'){history.replaceState(null,'','?wallet='+wallet+'&v=5200');document.getElementById('n-home').classList.add('active');return}const sec=document.getElementById('s-'+id); if(sec) sec.classList.add('active');const nav=document.getElementById('n-'+id); if(nav) nav.classList.add('active');location.hash=id;}if(location.hash){show(location.hash.replace('#',''))}setInterval(()=>{let isMining=localStorage.getItem('qdexx_mining')!=='false';if(isMining&&Math.random()>0.7){mineNow();}},3000);init();
+let blocks=parseInt(localStorage.getItem('qdexx_blocks')||'5200');
+let balance=parseFloat(localStorage.getItem('qdexx_bal')||'4.6910');
+let usdt=parseFloat(localStorage.getItem('qdexx_usdt')||'0.0321');
+const params=new URLSearchParams(location.search);
+let wallet=params.get('wallet')||localStorage.getItem('qdexx_wallet')||'QDXA1B2C3D4E5F6G7H8';
+document.getElementById('waddr').innerText=wallet;
+document.getElementById('wdisplay').innerText=wallet+' • 1 Telegram = 1 Wallet = 1 QDX';
+const RATE_PER_HOUR=0.0021;
+const RATE_PER_SEC=RATE_PER_HOUR/3600;
+const H24=24*60*60*1000;
+function getEnd(){return parseInt(localStorage.getItem('qdexx_mining_end')||'0')}
+function isMining(){return getEnd()>Date.now()}
+function updateSync(){
+ document.getElementById('sync').innerText=`SYNC #${blocks} • ${balance.toFixed(4)} QDX + ${usdt.toFixed(4)} USDT • ${wallet} • 24H`;
+ document.getElementById('bal').innerText=balance.toFixed(4);
+ document.getElementById('usdt').innerText=usdt.toFixed(4);
+ document.getElementById('wbal').innerText=balance.toFixed(4)+' QDX + '+usdt.toFixed(4)+' USDT';
+ document.getElementById('liveHdr').innerText=`LIVE ${isMining()?'⛏️ MINING 24H':'AUTO'} • #${blocks} • ${balance.toFixed(4)} QDX`;
+ document.getElementById('liveBadge').innerText=isMining()?`MINING 24H • #${blocks}`:`LIVE • #${blocks}`;
+}
+function shortW(w){return w.slice(0,6)+'...'+w.slice(-4)}
+function randHash(){const c='abcdef0123456789';let h='0x';for(let i=0;i<12;i++)h+=c[Math.floor(Math.random()*16)];return h}
+let blockData=[];
+function addBlock(h,isNew=false){
+ const miner=(h%3===0)?wallet:'QDX'+Math.random().toString(36).slice(2,6).toUpperCase();
+ blockData.unshift({height:h,hash:randHash()+Math.random().toString(16).slice(2,6)+'...'+Math.random().toString(16).slice(2,4),miner:miner,reward:'+0.001 QDX',ago:isNew?'0 secs ago':Math.floor(Math.random()*60)+' secs ago',txs:Math.floor(Math.random()*4)+1});
+ if(blockData.length>12) blockData.pop();
+}
+function init(){for(let i=11;i>=0;i--)addBlock(blocks-i);render();updateSync();updateMiningUI()}
+function render(){
+ document.getElementById('blockBody').innerHTML=blockData.map(b=>`<tr onclick="alert('Block #${b.height}')" style="cursor:pointer"><td><b>Block #${b.height}</b><br><span style="font-size:11px;color:#6b7280">${b.ago} • ${b.txs} txs</span></td><td><span class="hash">${b.hash}</span><br><span style="font-size:12px">${shortW(b.miner)} ${b.miner===wallet?'<span style=background:#0f2a1a;color:#22c55e;border:1px solid #1a4a2a;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:800>YOU</span>':''}</span></td><td class="reward">+0.001<br>QDX</td></tr>`).join('');
+}
+function updateMiningUI(){
+ const end=getEnd();
+ const btn=document.getElementById('mineBtn');
+ const btn2=document.getElementById('mineBtn2');
+ const status=document.getElementById('mineStatus');
+ const cd=document.getElementById('countdown');
+ if(isMining()){
+   const remain=end-Date.now();
+   const h=Math.floor(remain/3600000);const m=Math.floor((remain%3600000)/60000);const s=Math.floor((remain%60000)/1000);
+   cd.innerText=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+   status.innerText=`⛏️ Mining aktif - sisa ${h}j ${m}m - 24 jam nonstop`;
+   status.style.color='#22c55e';
+   if(btn){btn.innerText=`⛏️ MINING ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;btn.disabled=true}
+   if(btn2){btn2.innerText=`MINING ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;btn2.disabled=true}
+ }else{
+   cd.innerText=`00:00:00`;status.innerText=`Idle - Klik START untuk 24 jam`;status.style.color='#6b7280';
+   if(btn){btn.innerText=`⛏️ START MINING 24JAM`;btn.disabled=false}
+   if(btn2){btn2.innerText=`START 24 JAM MINING`;btn2.disabled=false}
+ }
+}
+function mineTick(){
+ if(!isMining()){updateMiningUI();return;}
+ balance+=RATE_PER_SEC*2;
+ if(Math.random()>0.6){blocks++;localStorage.setItem('qdexx_blocks',blocks);addBlock(blocks,true);render();}
+ localStorage.setItem('qdexx_bal',balance.toFixed(6));
+ localStorage.setItem('qdexx_wallet',wallet);
+ updateSync();updateMiningUI();
+ document.getElementById('mineLog').innerHTML=`⛏️ Mining 24H aktif #${blocks}<br>✅ Auto +${RATE_PER_SEC.toFixed(8)} QDX / sec<br>💰 ${balance.toFixed(6)} QDX<br>⏰ Sisa ${document.getElementById('countdown').innerText}`;
+}
+function startMining24h(){
+ const now=Date.now();const end=now+H24;
+ localStorage.setItem('qdexx_mining_end',end.toString());
+ localStorage.setItem('qdexx_mining_start',now.toString());
+ alert('⛏️ Mining 24 JAM dimulai! 1 klik jalan 24 jam nonstop!');
+ updateMiningUI();mineTick();
+}
+function show(id){
+ document.querySelectorAll('.section').forEach(e=>e.classList.remove('active'));
+ document.querySelectorAll('.nav button').forEach(e=>e.classList.remove('active'));
+ if(id==='home'){document.getElementById('n-home').classList.add('active');location.hash='';return}
+ const sec=document.getElementById('s-'+id); if(sec) sec.classList.add('active');
+ const nav=document.getElementById('n-'+id); if(nav) nav.classList.add('active');
+ location.hash=id;
+}
+function autoStart(){
+ init();
+ const hash=location.hash.replace('#','');if(hash){show(hash);}else{show('mining');}
+ if(isMining()){mineTick();}
+ setInterval(mineTick,2000);
+ setInterval(updateMiningUI,1000);
+}
+autoStart();
 </script></body></html>
