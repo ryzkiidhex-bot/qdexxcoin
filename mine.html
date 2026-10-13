@@ -1,28 +1,144 @@
-CTRL+C
-cd ~/qdexxcoin
-cat > mine.html << 'EOF'
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>QDEXX Mining</title>
-<style>body{background:#0e0e12;color:#fff;font-family:sans-serif;padding:12px}.card{background:#1a1a26;border-radius:16px;padding:16px;margin:12px 0;border:1px solid #2a2a3a}.btn{width:100%;padding:14px;border-radius:12px;border:none;background:#6c5cff;color:#fff;font-weight:bold;font-size:16px}.pill{display:inline-block;background:#2a2a3a;padding:6px 12px;border-radius:20px;margin:4px;font-size:14px}.log{font-family:monospace;font-size:12px;max-height:200px;overflow:auto;margin-top:10px;color:#aaa}</style>
-</head><body>
-<div class="card"><b>Bonus Telegram</b><br>Wallet: <span id="walletTxt">QDXA1B2C3D4E5F6G7H8</span></div>
-<div class="card"><b>3. Mining (24 Jam)</b><br><br>
-<span class="pill">Balance: <b id="bal">4.8630 QDX</b></span>
-<span class="pill">Blocks: <b id="blocks">3863</b></span>
-<span class="pill">Hashrate: <b id="hash">0 H/s</b></span><br><br>
-<button id="mineBtn" onclick="toggleMine()" class="btn">MULAI MINING</button>
-<div id="log" class="log">Ready. Klik MULAI MINING</div></div>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QDEXX Mining Pro - 24H</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#06060c;color:#fff;font-family:Inter,system-ui,sans-serif;padding:12px 12px 40px}
+.card{background:#13131d;border:1px solid #232334;border-radius:20px;padding:18px;margin:12px 0}
+.bonus-title{font-weight:800;font-size:18px;margin-bottom:14px}
+.bonus-line{font-size:15px;line-height:1.6;color:#d0d0e0}
+.bonus-line b{color:#fff}
+.progress-wrap{height:14px;background:#1f1f2f;border-radius:20px;overflow:hidden;margin:14px 0;position:relative}
+.progress-bar{height:100%;background:linear-gradient(90deg,#3b82f6,#8b5cf6);width:3.33%;border-radius:20px;transition:.5s}
+.migrasi-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.migrasi-left{font-size:16px}
+.kyc-badge{background:#2a2310;border:1px solid #5a4510;color:#facc15;padding:6px 14px;border-radius:20px;font-size:13px}
+.syarat{margin-top:10px;color:#9aa0b8;font-size:13px}
+.mining-head{font-size:20px;font-weight:800;margin-bottom:14px}
+.pill{display:inline-block;background:#1e1e2e;border:1px solid #2e2e4a;padding:8px 14px;border-radius:22px;margin:4px;font-size:13px;color:#cbd0e8}
+.pill b{color:#fff}
+.btn{width:100%;padding:16px;border-radius:16px;border:none;background:#6d5cff;color:#fff;font-weight:800;font-size:16px;margin-top:14px;cursor:pointer;letter-spacing:.5px}
+.btn.stop{background:#4a3fcc}
+.log{background:#0a0a12;border-radius:12px;margin-top:14px;padding:12px;font-family:monospace;font-size:11px;color:#8a8aa0;max-height:220px;overflow:auto;line-height:1.7;border:1px solid #1e1e32}
+.cara{background:#0f0f19;border-radius:16px;padding:14px;margin-top:14px;font-size:12px;color:#8b8ba7;line-height:1.6}
+.cara b{color:#c5c5d6}
+</style>
+</head>
+<body>
+
+<div class="card">
+<div class="bonus-title">🎁 Bonus Telegram</div>
+<div class="bonus-line">
+Wallet: <span id="walletTxt">QDXA1B2C3D4E5F6G7H8</span><br>
+Bonus awal: <b>1 QDX</b> (semua pendaftar dapat)<br>
+Registered: 13/10/2026<br>
+Telegram ID: 7417727328
+</div>
+</div>
+
+<div class="card">
+<div class="mining-head">2. Progress Migrasi</div>
+<div class="progress-wrap"><div class="progress-bar" id="progBar"></div></div>
+<div class="migrasi-row">
+<div class="migrasi-left"><span id="hariTxt">1 / 30 hari</span></div>
+<div class="kyc-badge">KYC: pending</div>
+</div>
+<div class="syarat">Syarat migrasi: ❌ 30 hari mining + ❌ KYC approved</div>
+</div>
+
+<div class="card">
+<div class="mining-head">3. Mining</div>
+<div>
+<span class="pill">Balance: <b id="bal">4.4850 QDX</b></span>
+<span class="pill">Blocks: <b id="blocks">3485</b></span>
+<span class="pill">Hashrate: <b id="hash">0 H/s</b></span>
+</div>
+<button id="mineBtn" onclick="toggleMine()" class="btn">⏸️ STOP MINING</button>
+<div class="log" id="log">12:24.33 Block #3485 found! +0.001 QDX<br>Ready...</div>
+<div class="cara">
+<b>Cara kerja (sudah sambung sama bot Telegram kamu):</b><br>
+1. Daftar di @Qdexxcoin_bot → /register QDX... → otomatis dapat 1 QDX (masuk bonus_claims.json)<br>
+2. Cek wallet di atas → mining kebuka<br>
+3. Mining tetap jalan 24 jam walau close browser (offline claim 0.05 QDX/jam)
+</div>
+</div>
+
 <script>
-let wallet=localStorage.getItem('qdexx_wallet')||'QDXA1B2C3D4E5F6G7H8';
-let balance=parseFloat(localStorage.getItem('qdexx_balance')||'4.8630');
-let blocks=parseInt(localStorage.getItem('qdexx_blocks')||'3863');
-let mining=false,mi=null;
-function log(t){let d=document.getElementById('log');d.innerHTML=new Date().toLocaleTimeString()+' '+t+'<br>'+d.innerHTML;}
-function updateUI(){document.getElementById('bal').innerText=balance.toFixed(4)+' QDX';document.getElementById('blocks').innerText=blocks;}
-function claimOffline(){let last=parseInt(localStorage.getItem('qdexx_last_time')||Date.now());let now=Date.now();if(localStorage.getItem('qdexx_mining')==='true'){let h=(now-last)/1000/3600;if(h>0.0002){let e=h*0.05;balance+=e;blocks+=Math.floor(h*60);localStorage.setItem('qdexx_balance',balance);localStorage.setItem('qdexx_blocks',blocks);log('Offline: +'+e.toFixed(4)+' QDX dari '+h.toFixed(2)+' jam');}}localStorage.setItem('qdexx_last_time',now);updateUI();}
-function mineLoop(){if(mi)clearInterval(mi);mi=setInterval(()=>{if(!mining)return;blocks++;balance+=0.001;let hr=Math.floor(40000+Math.random()*10000);document.getElementById('hash').innerText=hr+' H/s';document.getElementById('bal').innerText=balance.toFixed(4)+' QDX';document.getElementById('blocks').innerText=blocks;localStorage.setItem('qdexx_balance',balance);localStorage.setItem('qdexx_blocks',blocks);localStorage.setItem('qdexx_last_time',Date.now());if(blocks%10===0)log('Block #'+blocks+' found');},1000);}
-function toggleMine(){if(!mining){mining=true;localStorage.setItem('qdexx_mining','true');localStorage.setItem('qdexx_last_time',Date.now());document.getElementById('mineBtn').innerText='STOP MINING';mineLoop();log('Mining dimulai - tetap jalan walau close 24 jam');}else{claimOffline();mining=false;localStorage.setItem('qdexx_mining','false');if(mi)clearInterval(mi);document.getElementById('mineBtn').innerText='MULAI MINING';document.getElementById('hash').innerText='0 H/s';log('Pause. Balance: '+balance.toFixed(4));}}
-if(localStorage.getItem('qdexx_mining')==='true'){mining=true;document.getElementById('mineBtn').innerText='STOP MINING';mineLoop();log('Auto resume aktif');}claimOffline();setInterval(claimOffline,10000);updateUI();
-</script></body></html>
-EOF
-git add mine.html && git commit -m "fix mining jalan final tanpa download" && git push && echo "=== DONE FINAL ===" && ls -lh mine.html
+let balance=parseFloat(localStorage.getItem('qdexx_balance')||'4.4850');
+let blocks=parseInt(localStorage.getItem('qdexx_blocks')||'3485');
+let hari=parseInt(localStorage.getItem('qdexx_hari')||'1');
+let mining=localStorage.getItem('qdexx_mining')!=='false'; // default true biar kayak di foto lu STOP
+let mi=null;
+const wallet='QDXA1B2C3D4E5F6G7H8';
+document.getElementById('walletTxt').innerText=wallet;
+function log(t){let d=document.getElementById('log');let tm=new Date().toLocaleTimeString();d.innerHTML=tm+' '+t+'<br>'+d.innerHTML;}
+function updateUI(){
+ document.getElementById('bal').innerText=balance.toFixed(4)+' QDX';
+ document.getElementById('blocks').innerText=blocks;
+ document.getElementById('hariTxt').innerText=hari+' / 30 hari';
+ document.getElementById('progBar').style.width=(hari/30*100).toFixed(2)+'%';
+ localStorage.setItem('qdexx_balance',balance);
+ localStorage.setItem('qdexx_blocks',blocks);
+ localStorage.setItem('qdexx_hari',hari);
+}
+function claimOffline(){
+ let last=parseInt(localStorage.getItem('qdexx_last_time')||Date.now());
+ let now=Date.now();
+ if(localStorage.getItem('qdexx_mining')==='true'){
+   let hours=(now-last)/1000/3600;
+   if(hours>0.001){
+     let earned=hours*0.05;
+     balance+=earned;
+     blocks+=Math.floor(hours*60);
+     // hari nambah tiap 24 jam mining
+     let hariTambah=Math.floor(hours/24);
+     if(hariTambah>0) hari=Math.min(30,hari+hariTambah);
+     log('Offline: +'+earned.toFixed(4)+' QDX dari '+hours.toFixed(2)+' jam');
+     updateUI();
+   }
+ }
+ localStorage.setItem('qdexx_last_time',now);
+}
+function mineLoop(){
+ if(mi)clearInterval(mi);
+ mi=setInterval(()=>{
+   if(!mining)return;
+   blocks++;balance+=0.001;
+   let hr=Math.floor(40000+Math.random()*10000);
+   document.getElementById('hash').innerText=hr+' H/s';
+   document.getElementById('bal').innerText=balance.toFixed(4)+' QDX';
+   document.getElementById('blocks').innerText=blocks;
+   localStorage.setItem('qdexx_balance',balance);
+   localStorage.setItem('qdexx_blocks',blocks);
+   localStorage.setItem('qdexx_last_time',Date.now());
+   if(blocks%1===0)log('Block #'+blocks+' found! +0.001 QDX');
+ },1000);
+}
+function toggleMine(){
+ if(!mining){
+   mining=true;localStorage.setItem('qdexx_mining','true');
+   localStorage.setItem('qdexx_last_time',Date.now());
+   document.getElementById('mineBtn').innerText='⏸️ STOP MINING';
+   document.getElementById('mineBtn').classList.add('stop');
+   mineLoop();log('Mining dimulai - tetap jalan 24 jam');
+ }else{
+   claimOffline();mining=false;localStorage.setItem('qdexx_mining','false');
+   if(mi)clearInterval(mi);
+   document.getElementById('mineBtn').innerText='▶️ MULAI MINING';
+   document.getElementById('hash').innerText='0 H/s';
+   log('Pause. Balance: '+balance.toFixed(4));
+ }
+}
+// auto start kayak di foto lu
+if(mining){
+ document.getElementById('mineBtn').innerText='⏸️ STOP MINING';
+ mineLoop();
+}
+claimOffline();
+setInterval(claimOffline,15000);
+updateUI();
+</script>
+</body>
+</html>
