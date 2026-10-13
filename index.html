@@ -1,63 +1,6 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>QDEXX COIN - SYNC #4473</title>
-<style>
-body{margin:0;background:#050805;color:#fff;font-family:Inter,system-ui;text-align:center}
-.logo-wrap{margin:60px auto 20px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle at 50% 40%,#0a1a0f,#000);box-shadow:0 0 60px rgba(0,255,100,.25);display:flex;align-items:center;justify-content:center}
-.logo-wrap img{width:230px;filter:drop-shadow(0 0 12px #00ff88)}
-h1{color:#00ff88;letter-spacing:2px;margin:10px 0 5px;font-size:42px}
-.sub{color:#7a8a7a;letter-spacing:3px;font-size:12px;margin-bottom:25px}
-.card{margin:0 18px;background:linear-gradient(180deg,#0c1a11,#070d08);border:1px solid rgba(0,255,100,.25);border-radius:22px;padding:22px}
-.card small{color:#6a7a6a;letter-spacing:2px}
-.balance{font-size:52px;font-weight:800;margin:8px 0}
-.usdt{color:#00ff88;font-weight:700;font-size:20px}
-.sync{color:#5a6a5a;font-size:12px;margin-top:8px;word-break:break-all}
-.btns{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px}
-.btn{padding:16px;border-radius:16px;border:1px solid rgba(0,255,100,.35);font-weight:700;cursor:pointer}
-.btn-green{background:#00ff88;color:#000;border:none}
-.btn-dark{background:#111a13;color:#00ff88}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#080d08;border-top:1px solid #1a2a1a;display:flex;justify-content:space-around;padding:10px 0}
-.nav span{color:#6a7a6a;font-size:11px}.nav .active{color:#00ff88}
-</style>
-</head>
-<body>
-<div class="logo-wrap"><img src="logo.png" onerror="this.src='https://ryzkiidhex-bot.github.io/qdexxcoin/logo.png'" alt="QDEXX"></div>
-<h1>QDEXX COIN</h1>
-<div class="sub">FUTURE MINING • LIVE BLOCKCHAIN</div>
-
-<div class="card">
-<small>YOUR BALANCE (SYNCED)</small>
-<div class="balance" id="bal">5.4730 QDX</div>
-<div class="usdt" id="usdt">1 Telegram = 1 Wallet = 1 QDX</div>
-<div class="sync" id="sync">SYNC #4473 • QDXA1B2C3D4E5F6G7H8</div>
-</div>
-
-<div class="btns">
-<button class="btn btn-green" onclick="startMining()">⛏️ START MINING</button>
-<button class="btn btn-dark" onclick="location.href='#explorer'">🔍 EXPLORER PRO</button>
-<button class="btn btn-dark" onclick="showWallet()">💳 WALLET</button>
-<button class="btn btn-dark" onclick="location.href='#swap'">📈 SWAP</button>
-</div>
-
-<div class="nav"><span class="active">🏠<br>Home</span><span>⛏️<br>Mining</span><span>🔍<br>Explorer</span><span>💳<br>Wallet</span></div>
-
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>QDEXX COIN - SYNC #4748</title><style>body{margin:0;background:#050805;color:#fff;font-family:Inter;text-align:center}.logo-wrap{margin:60px auto 20px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle at 50% 40%,#0a1a0f,#000);display:flex;align-items:center;justify-content:center}h1{color:#00ff88;letter-spacing:2px;margin:10px 0 5px;font-size:42px}.sub{color:#7a8a7a;letter-spacing:3px;font-size:12px;margin-bottom:25px}.card{margin:0 18px;background:linear-gradient(180deg,#0c1a11,#070d08);border:1px solid rgba(0,255,100,.25);border-radius:22px;padding:22px}.balance{font-size:52px;font-weight:800;margin:8px 0}.usdt{color:#00ff88;font-weight:700;font-size:20px}.sync{color:#5a6a5a;font-size:12px;margin-top:8px}</style></head><body><div class="logo-wrap"><img src="logo.png" style="width:230px"></div><h1>QDEXX COIN</h1><div class="sub">FUTURE MINING • LIVE BLOCKCHAIN</div><div class="card"><small>YOUR BALANCE (SYNCED)</small><div class="balance" id="bal">4.6910 QDX</div><div class="usdt">0.0321 USDT • Swapped</div><div class="sync" id="sync">SYNC #4748 • 4.6910 QDX + 0.0321 USDT • QDXA1B2C3D4E5F6G7H8</div></div>
 <script>
-// SYNC DARI BOT QDEXXBOT #4473 - BACA ?wallet=
-const params = new URLSearchParams(location.search);
-const wallet = params.get('wallet') || localStorage.getItem('qdexx_wallet') || 'QDXA1B2C3D4E5F6G7H8';
-localStorage.setItem('qdexx_wallet', wallet);
-
-// SALDO SYNC SAMA BOT
-const BALANCE = 5.4730;
-const SYNC = "#4473";
-
-document.getElementById('bal').innerText = BALANCE.toFixed(4) + " QDX";
-document.getElementById('sync').innerText = "SYNC " + SYNC + " • " + wallet + " • 5.4730 QDX";
-
-function showWallet(){ alert("💼 Wallet:\n"+wallet+"\nSaldo: "+BALANCE.toFixed(4)+" QDX\n1 Telegram=1 Wallet=1 QDX"); }
-function startMining(){ alert("⛏️ Mining LIVE SYNC "+SYNC+"\nWallet: "+wallet+"\n5.4730 QDX - BONUS +1 QDX"); }
-</script>
-</body>
-</html>
+const p=new URLSearchParams(location.search);const w=p.get('wallet')||'QDXA1B2C3D4E5F6G7H8';
+document.getElementById('sync').innerText='SYNC #4748 • 4.6910 QDX + 0.0321 USDT • '+w+' • Swapped 2 coin';
+localStorage.setItem('qdexx_wallet',w);
+</script></body></html>
