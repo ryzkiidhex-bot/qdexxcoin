@@ -30,3 +30,4 @@ function doSearch(v){if(v.length<3)return;if(v.startsWith('QDX')){document.getEl
 genBlocks();renderBlocks();renderTx();renderMiners();document.getElementById('mcapSub').innerText=`Supply ${bal.toFixed(4)} QDX • Price $0.0042`;
 setInterval(()=>{let b=parseInt(localStorage.getItem('qdexx_blocks')||blocks+'');let bl=parseFloat(localStorage.getItem('qdexx_bal')||bal+'');if(b>blocks){blocks=b;bal=bl;genBlocks();renderBlocks();renderTx();document.getElementById('liveBadge').innerText='LIVE • #'+blocks}},1000);
 </script></body></html>
+<!-- FINAL FIX 0.0259 USDT fd4fa5b -->
